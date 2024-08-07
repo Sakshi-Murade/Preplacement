@@ -1,0 +1,28 @@
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <iostream>
+
+class Solution {
+public:
+    int minMoves2(std::vector<int>& nums) {
+        int n = nums.size();
+        nth_element(nums.begin(), nums.begin() + n / 2, nums.end());
+        int median = nums[n / 2];
+        int moves = 0;
+
+        for (int num : nums) {
+            moves += std::abs(num - median);
+        }
+
+        return moves;
+    }
+};
+
+int main() {
+    Solution solution;
+    std::vector<int> nums = {1, 2, 3};
+    int result = solution.minMoves2(nums);
+    std::cout << "Minimum moves: " << result << std::endl;
+    return 0;
+}
